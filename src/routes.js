@@ -1,6 +1,6 @@
-import './App.js';
+import './index.js';
 import { BrowserRouter, Router, Route } from 'react-router-dom';
-import Login from './components/Login';
+import Login from './pages/Login';
 
 
 function AppRoutes() {
