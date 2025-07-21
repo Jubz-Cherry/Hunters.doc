@@ -1,9 +1,35 @@
-
+import './Register.module.css';
+import style from './Register.module.css';
+import backgroundImg from '../../img/Ceu-estrela.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
 function Register() {
+
+    const navigate = useNavigate(); 
+    
+      const handleRegister = (e) => {
+        e.preventDefault(); 
+        // lógica de registro aqui
+        navigate('/Home');
+      };
     return (
-        <h1>oi teste</h1>
+        <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
+    <div className={style.Register}>
+      <div className={style['register-container']}>
+        <form className={style['register-form']} onSubmit={handleRegister}>
+          <h1>Faça sua conta!</h1>
+
+          <input type="email" placeholder="Email@" />
+          <input type="text" placeholder="Nome" />
+          <input type="password" placeholder="Senha" />
+
+          <button type="submit">Registrar</button>
+
+        </form>
+      </div>
+    </div>
+    </div>
 
     )
 }
