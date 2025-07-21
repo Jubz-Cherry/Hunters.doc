@@ -29,14 +29,26 @@
   border: none;
   border-radius: 60px;
 }
-.login-form button {
+.login-form button[type="submit"] {
   width: 100%;
   padding: 20px;
-  background-color: #070974;
+  background-color: #0a0d97;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   border-radius: 30px;
+}
+.login-form button[type="button"] {
+  background-color: transparent;
+  color: #000000;
+  font-size: 14px;
+  border: none;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  align-self: flex-end;
+  width: auto;
+  padding: 5px 10px;
 }
 .login h1{
   align-items: center;
