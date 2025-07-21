@@ -1,7 +1,7 @@
 import './Register.module.css';
 import style from './Register.module.css';
-import backgroundImg from '../../img/Ceu-estrela.jpg';
 import { useNavigate } from 'react-router-dom';
+import backgroundImg from '../../img/sobrenatural.jpg'
 
 
 function Register() {
@@ -13,8 +13,9 @@ function Register() {
         // lógica de registro aqui
         navigate('/Home');
       };
+
     return (
-        <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
+      <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
     <div className={style.Register}>
       <div className={style['register-container']}>
         <form className={style['register-form']} onSubmit={handleRegister}>
@@ -22,15 +23,14 @@ function Register() {
 
           <input type="email" placeholder="Email@" />
           <input type="text" placeholder="Nome" />
-          <input type="password" placeholder="Senha" />
+          <input type="senha" placeholder="Senha" />
 
           <button type="submit">Registrar</button>
 
         </form>
       </div>
     </div>
-    </div>
-
+   </div>
     )
 }
 

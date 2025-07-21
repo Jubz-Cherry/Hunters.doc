@@ -1,8 +1,7 @@
 import style from './Login.module.css';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import backgroundImg from '../../img/Ceu-estrela.jpg';
-
+import backgroundImg from '../../img/sobrenatural.jpg'
 
 
 
@@ -22,7 +21,7 @@ function Login() {
   };
 
   return (
-    <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
+   <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
     <div className={style.login}>
       <div className={style['login-container']}>
         <form className={style['login-form']} onSubmit={handleLogin}>
@@ -38,7 +37,7 @@ function Login() {
           <button type="submit">Entrar</button>
 
           <p>
-            Não tem conta? <Link onClick={goToRegister}>Registre!</Link>
+            Não tem conta? <Link onClick={goToRegister} className={style.Link}>Registre!</Link>
           </p>
         </form>
       </div>
