@@ -67,11 +67,8 @@
   display: flex;
   color: white;
 }
-.registerLink {
-  color: #ffffff;
-}
-.registerLink:hover {
-  color: #ffffff; 
+.Link{
+  color:#adadad;
 }
 html, body {
   margin: 0;
