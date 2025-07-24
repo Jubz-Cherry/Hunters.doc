@@ -6,12 +6,22 @@
   height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: center; 
-  padding-left: 60px;  
+  align-items: first baseline; 
+  padding-left: center; 
+  justify-content: center;
 }
-.home h1{
+.background h1{
   align-items: center;
   justify-content: center;
   display: flex;
   color: white;
+}
+.login-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
 }
