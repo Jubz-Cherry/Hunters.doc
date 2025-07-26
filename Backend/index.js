@@ -20,19 +20,31 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
-app.post("/register", async (req, res) => { 
-  try {
-    const createUser = await users.create({
-      name: req.body.name,
-      email: req.body.email,
-      senha: req.body.senha,
-    });
 
-    res.status(201).json({ message: "Usuário criado com sucesso!", user: createUser });
-  } catch (err) {
-    console.error("Erro ao criar usuário:", err); // 
-    res.status(500).json({ error: "Erro ao criar usuário" });
-  }
+app.post("/register", async (req, res) => {
+    try {
+        const { name, email, senha } = req.body;
+
+        const userExist = await users.findOne({ email });
+        if (userExist) {
+            return res.status(400).json({ error: "E-mail já cadastrado" });
+        }
+
+        const newUser = new users({ name, email, senha });
+        await newUser.save();
+
+        
+        const { senha: _, ...userNoPass } = newUser._doc;
+
+        res.status(201).json({
+            message: "Usuário criado com sucesso!",
+            user: userNoPass,
+        });
+
+    } catch (err) {
+        console.error("Erro ao criar usuário:", err);
+        res.status(500).json({ error: "Erro ao criar usuário" });
+    }
 });
 
 
