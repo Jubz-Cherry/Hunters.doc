@@ -5,7 +5,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MonsterDetails from './pages/MonstersPage/monsterDetails';
 
-
 function App() {
   return (
     <Routes>

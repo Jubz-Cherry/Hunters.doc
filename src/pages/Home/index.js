@@ -5,7 +5,6 @@ import backgroundImg from '../../img/estrada.jpg';
 import Card from '../../components/Card';
 import { useState, useEffect } from 'react';
 import API from '../../services/API';
-import MonsterDetails from '../MonstersPage/monsterDetails';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -38,7 +37,7 @@ function Home() {
           <div className={'login-container'}>
             {filtered.map(monstro => (
               <div key={monstro.name} onClick={() => handleCardClick(monstro.name)}>
-              <Card id={monstro.name} titulo={monstro.name} capa={monstro.image} onClick={MonsterDetails.name} />
+              <Card id={monstro.name} titulo={monstro.name} capa={monstro.image} />
               
               </div>
               ))}   

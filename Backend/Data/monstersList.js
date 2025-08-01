@@ -3,7 +3,7 @@ const monstersList = [
   {
     id: 1,
     name: "Vampiro",
-    slug: "vampiro",
+    origin: "Folclore europeu",
     description: "Um ser noturno que se alimenta de sangue.",
     weaknesses: ["Luz do sol", "Estaca no coração"],
     image:  "http://localhost:3001/imagens/vampires.jpg",
@@ -11,10 +11,19 @@ const monstersList = [
   {
     id: 2,
     name: "Lobisomem",
-    slug: "Lobisomem",
+    origin: "Folclore europeu",
     description: "Criatura canibal da floresta.",
     weaknesses: ["Fogo"],
     image: "http://localhost:3001/imagens/lobi.jpg",
+  },
+  {
+    id: 2,
+    name: "Wendigo",
+    origin: "Folclore europeu",
+    description: "Criatura canibal da floresta.",
+    weaknesses: ["Fogo"],
+    image: "http://localhost:3001/imagens/wendigo.jpg",
+
   }
 ];
 

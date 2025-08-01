@@ -1,0 +1,15 @@
+.login-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.login h1{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: white;
+}
