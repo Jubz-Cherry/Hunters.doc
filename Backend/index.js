@@ -3,10 +3,13 @@ const app = express();
 const mongoose = require ('mongoose');
 const cors = require ('cors');
 const users = require("./Models/users");
+const monstersList = require('./Data/monstersList');
+const path = require('path');
+
 
 app.use(express.json());
-app.set('view engine', 'ejs');
 app.use(cors());
+app.use('/imagens', express.static(path.join(__dirname, 'public/imagens')));
 
 mongoose.connect("mongodb://localhost:27017/register", {})
 .then(() => {
@@ -19,7 +22,6 @@ mongoose.connect("mongodb://localhost:27017/register", {})
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
-
 
 app.post("/register", async (req, res) => {
     try {
@@ -47,7 +49,6 @@ app.post("/register", async (req, res) => {
     }
 });
 
-
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 
@@ -73,6 +74,30 @@ app.post("/login", async (req, res) => {
     return res.status(500).json({ error: "Erro no servidor." });
   }
 });
+
+app.get('/monsters', async (req, res) => {
+  try {
+    res.send(monstersList);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao carregar monstros' });
+  }
+});
+
+app.get('/monsters/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const monster = monstersList.find((m) => m.name === name);
+
+    if (!monster) {
+      return res.status(404).json({ error: 'Monstro não encontrado' });
+    }
+
+    res.status(200).json(monster);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao carregar o monstro' });
+  }
+});
+
 
 
 app.listen(3001, () => {
