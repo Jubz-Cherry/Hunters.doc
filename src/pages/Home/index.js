@@ -6,6 +6,7 @@ import Card from '../../components/Card';
 import { useState, useEffect } from 'react';
 import API from '../../services/API';
 
+
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [monsters, setMonsters] = useState([]);
@@ -16,7 +17,7 @@ function Home() {
   };
 
   const handleCardClick = (name) => {
-    navigate(`/monstro/${name}`);
+    navigate(`/monsters/${name}`);
   };
 
   useEffect(() => {
@@ -35,9 +36,9 @@ function Home() {
       <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
         <div className={style.loginContainer}>
           <div className={'login-container'}>
-            {filtered.map(monstro => (
-              <div key={monstro.name} onClick={() => handleCardClick(monstro.name)}>
-              <Card id={monstro.name} titulo={monstro.name} capa={monstro.image} />
+            {filtered.map(monsters => (
+              <div key={monsters.name} onClick={() => handleCardClick(monsters.name)}>
+              <Card id={monsters.name} titulo={monsters.name} capa={monsters.image} />
               
               </div>
               ))}   

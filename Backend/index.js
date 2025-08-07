@@ -84,8 +84,8 @@ app.get('/monsters', async (req, res) => {
 });
 
 app.get('/monsters/:name', async (req, res) => {
-  try {
     const { name } = req.params;
+  try {
     const monster = monstersList.find((m) => m.name === name);
 
     if (!monster) {
@@ -97,7 +97,6 @@ app.get('/monsters/:name', async (req, res) => {
     res.status(500).json({ error: 'Erro ao carregar o monstro' });
   }
 });
-
 
 
 app.listen(3001, () => {

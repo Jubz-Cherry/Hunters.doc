@@ -25,6 +25,10 @@
 }
 
 .card{
-    align-items: center;
+  align-items: center;
+  width: 300px; /* ou 100%, 50%, depende de quantos quer por linha */
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
 }
-
