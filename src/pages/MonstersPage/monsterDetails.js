@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import API from '../../services/API';
 import style from './monsterDetails.module.css';
 import Banner from '../../components/Banner';
+import Dropdown from '../../components/Dropdown';
+import Header from '../../components/Header';
 
 
 function MonsterDetails() {
@@ -24,12 +26,12 @@ function MonsterDetails() {
 
   return (
     <>
+    <Header titulo={monsters.name}/>
+    <Dropdown/>
     <Banner bannerUrl={monsters.banner}/>
 
     <div className={'form-container'}>
         <div className={style['login-container']}>
-  
-           <h1>{monsters.name}</h1>
 
             <p><strong>Origem: </strong> {monsters.origin}</p>
 

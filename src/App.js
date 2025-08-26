@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MonsterDetails from './pages/MonstersPage/monsterDetails';
+import Notes from './pages/Notes';
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/monsters/:name" element={<MonsterDetails />}/>
+      <Route path="/notes" element={<Notes />}/>
     </Routes>
   );
 }

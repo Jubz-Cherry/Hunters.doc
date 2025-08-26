@@ -16,12 +16,20 @@
   display: flex;
   color: white;
 }
+
 .login-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-  width: 100%;
+  width: 300px;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
 }
+
+.cardsWrapper {
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap;        
+  gap: 20px;               
+  padding: 20px;
+}
+

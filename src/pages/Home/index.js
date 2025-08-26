@@ -5,6 +5,7 @@ import backgroundImg from '../../img/estrada.jpg';
 import Card from '../../components/Card';
 import { useState, useEffect } from 'react';
 import API from '../../services/API';
+import Dropdown from '../../components/Dropdown';
 
 
 function Home() {
@@ -33,9 +34,10 @@ function Home() {
   return (
     <>
       <Cabecalho searchTerm={searchTerm} onSearch={setSearchTerm} onSearchClick={handleSearchClick} />
+      <Dropdown/>
       <div className={style.background} style={{ backgroundImage: `url(${backgroundImg})` }}>
         <div className={style.loginContainer}>
-          <div className={'login-container'}>
+          <div className={style.cardsWrapper}>
             {filtered.map(monsters => (
               <div key={monsters.name} onClick={() => handleCardClick(monsters.name)}>
               <Card id={monsters.name} titulo={monsters.name} capa={monsters.image} />

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require ('mongoose');
 const cors = require ('cors');
 const users = require("./Models/users");
+const Note = require("./Models/notes");
 const monstersList = require('./Data/monstersList');
 const path = require('path');
 
@@ -11,17 +12,13 @@ app.use(express.json());
 app.use(cors());
 app.use('/imagens', express.static(path.join(__dirname, 'public/imagens')));
 
+
 mongoose.connect("mongodb://localhost:27017/register", {})
 .then(() => {
     console.log("Mongo funcionando!");
 }).catch((err) => {
     console.log("Mongo não esta conectado", err);
 }); 
-
-
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
-});
 
 app.post("/register", async (req, res) => {
     try {
@@ -66,16 +63,23 @@ app.post("/login", async (req, res) => {
     if (user.senha !== senha) {
       return res.status(401).json({ error: "Senha incorreta." });
     }
-
-    return res.json({ message: "Login efetuado com sucesso!", user: { name: user.name, email: user.email } });
+   
+    return res.json({
+      message: "Login efetuado com sucesso!", 
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+    });
 
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Erro no servidor." });
   }
+  
 });
 
-app.get('/monsters', async (req, res) => {
+app.get("/monsters", async (req, res) => {
   try {
     res.send(monstersList);
   } catch (err) {
@@ -83,7 +87,7 @@ app.get('/monsters', async (req, res) => {
   }
 });
 
-app.get('/monsters/:name', async (req, res) => {
+app.get("/monsters/:name", async (req, res) => {
     const { name } = req.params;
   try {
     const monster = monstersList.find((m) => m.name === name);
@@ -96,6 +100,24 @@ app.get('/monsters/:name', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Erro ao carregar o monstro' });
   }
+});
+
+app.get("/notes", async (req, res) => {
+  const notes = await Note.find().sort({ createdAt: -1 });
+  res.json(notes);
+});
+
+app.post("/notes", async (req, res) => {
+  const { title, content } = req.body;
+  if (!title || !content) return res.status(400).json({ error: 'Campos obrigatórios' });
+
+  const note = await Note.create({ title, content });
+  res.status(201).json(note);
+});
+
+app.delete("/note/:id", async (req, res) => {
+  await Note.findByIdAndDelete(req.params.id);
+  res.sendStatus(204);
 });
 
 

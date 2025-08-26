@@ -1,6 +1,5 @@
 import style from './Cabecalho.module.css';
-import logo from './hunterlogo.png'
-
+import logo from '../../img/hunterlogo.png';
 
 function Cabecalho({ onSearch, searchTerm }){
     return(

@@ -1,7 +1,6 @@
 
 const monstersList = [
   {
-    id: 1,
     name: "Vampiro",
     origin: "Folclore europeu (principalmente do Leste Europeu, como Romênia e Sérvia)",
     banner: "http://localhost:3001/imagens/vampires.jpg",
@@ -33,7 +32,6 @@ const monstersList = [
     image: "http://localhost:3001/imagens/vampires.jpg",
   },
   {
-    id: 2,
     name: "Lobisomem",
     banner: "http://localhost:3001/imagens/lobi.jpg",
     origin: "Lendas e relatos de caçadores nos Estados Unidos, baseados em folclores europeus e americanos",
@@ -60,7 +58,6 @@ const monstersList = [
     image: "http://localhost:3001/imagens/lobi.jpg",
   },
   {
-    id: 2,
     name: "Wendigo",
     banner: "http://localhost:3001/imagens/wendigo.jpg",
     origin: ["O Wendigo é uma criatura mítica originária das lendas dos povos indígenas do norte da América,",
@@ -88,7 +85,37 @@ const monstersList = [
     "Pode ser enfraquecido com armadilhas e balas, mas não morto"],
 
     image: "http://localhost:3001/imagens/wendigo.jpg",
+  },
+  {
+    name:"Demônio",
+    banner:"http://localhost:3001/imagens/demon.jpg",
 
+    origin:["Demônios são frequentemente descritos como espíritos caídos ou seres de outras dimensões,",
+    "que buscam corromper, possuir ou destruir humanos."],
+    
+    description:[": `Demônios são almas humanas corrompidas após extensas torturas no Inferno.",
+    "São entidades feitas de fumaça negra e podem possuir corpos humanos, ganhando acesso ao mundo dos vivos.",
+    "Quando possuem um corpo, aparentam ser humanos comuns, mas revelam sua verdadeira natureza pelos olhos negros",
+    "(ou de outras cores, dependendo do poder). São manipuladores, cruéis e extremamente perigosos."],
+    
+    custom:["Podem assumir diversas formas,",
+    "desde figuras humanóides, humanas até criaturas monstruosas, muitas vezes deformadas ou assustadoras."],
+    
+    behavior:["Demônios costumam manipular, possuir ou influenciar pessoas para causar caos, sofrimento e destruição."],
+    
+    transformation:["`Quando uma alma humana morre e é enviada ao Inferno — geralmente por ter cometido pecados graves ou",
+    "por fazer um pacto com um demônio — ela é torturada por anos. Com o tempo, se a alma cede e passa a torturar outras,",
+    "ela perde sua humanidade e se transforma em um demônio."],
+
+    cure:["Não há cura, dependendo da tradição, demônios podem ser banidos ou exorcizados por rituais religiosos,",
+    "símbolos sagrados como um pentagrama, água benta ou oração. Não é uma cura, mas sim, uma forma de devolver a almda de volta ao inferno temporáriamente."],
+   
+    weaknesses:["Água benta queima, exorcismo, usar símbolos contenção -sigilos demoníacos- como forma de aprisionar-los,",
+    "desenhar um pentagrama no chão pode ser útil se quiser mater um demônio preso enquanto faz o exorcismo.",
+    "Pode também matar eles com a faca demoníaca -faca que mata somente demônios-, code -arma perdida feita por Sammuel Code com balas",
+    "especiais que matam qualquer coisa-, faca dos anjos -mata anjos e demônios, lâmina forjada com metal celestial, um material que só existe no Céu.-"],
+   
+    image: "http://localhost:3001/imagens/demon.jpg",
   }
 ];
 
