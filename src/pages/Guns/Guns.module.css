@@ -1,0 +1,35 @@
+.background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: first baseline; 
+  padding-left: center; 
+  justify-content: center;
+}
+.background h1{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: white;
+}
+
+.login-container{
+  width: 300px;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.cardsWrapper {
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap;        
+  gap: 20px;               
+  padding: 20px;
+}
+
