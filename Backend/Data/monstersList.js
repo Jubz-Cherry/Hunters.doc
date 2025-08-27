@@ -116,7 +116,98 @@ const monstersList = [
     "especiais que matam qualquer coisa-, faca dos anjos -mata anjos e demônios, lâmina forjada com metal celestial, um material que só existe no Céu.-"],
    
     image: "http://localhost:3001/imagens/demon.jpg",
-  }
+  },
+  {
+    name: "Anjo",
+    banner:"http://localhost:3001/imagens/anjos.jpg",
+    origin: [
+    "Anjos são seres celestiais criados por Deus para servir como mensageiros, guerreiros e guardiões do Céu.",
+    "Eles existem desde antes da criação da humanidade e desempenham papéis fundamentais na ordem divina."],
+    
+    description: [
+    ": `Anjos são entidades extremamente poderosas, compostas de pura graça celestial.",
+    "Apesar de não possuírem forma física real, eles tomam corpos humanos (vasos) para interagir com o mundo físico.",
+    "Seus olhos brilham com uma luz intensa quando revelam sua verdadeira natureza.",
+    "Alguns anjos, como Castiel, desenvolvem empatia pelos humanos, enquanto outros seguem ordens divinas cegamente."],
+    
+    custom: [
+    "Geralmente aparecem como humanos normais quando em vasos,",
+    "mas em sua forma verdadeira são descritos como figuras radiantes com múltiplas asas, luz intensa,",
+    "e formas incompreensíveis para olhos humanos — podendo cegar ou enlouquecer quem os vê."],
+
+    behavior: [
+    "Anjos seguem ordens da hierarquia celestial (Deus, Arcanjos, etc.),",
+    "mas alguns se rebelam ou questionam seu propósito.",
+    "São protetores, mas também podem ser impiedosos ao cumprir ordens divinas."],
+
+    transformation: [
+    "`Não há transformação comum de humano para anjo.",
+    "Anjos são criados diretamente por Deus.",
+    "No entanto, seres humanos podem ser usados como 'vasos' para que um anjo se manifeste na Terra,",
+    "desde que deem consentimento explícito."],
+
+    cure: [
+    "Anjos feridos podem se recuperar com tempo, ou ao absorverem mais graça celestial.",
+    "Não há 'cura' no sentido tradicional para um anjo corrompido — quando caem, tornam-se anjos caídos e perdem parte de seus poderes.",
+    "Alguns podem tentar redenção, mas isso depende da vontade divina."],
+
+    weaknesses: [
+    "Símbolos de banimento angelical podem expulsá-los temporariamente de seus vasos.",
+    "Lâminas angelicais (como a lâmina de um anjo) podem matá-los.",
+    "Armas forjadas com metal celestial também são letais.",
+    "Anjos podem ser presos em círculos de contenção específicos desenhados com símbolos enoqueanos.",
+    "A 'Palavra de Deus' ou encantamentos antigos também podem influenciar ou controlar anjos, dependendo do contexto."],
+   
+    image: "http://localhost:3001/imagens/anjos.jpg",
+  },
+  { name: "Fantasma",
+    banner: "http://localhost:3001/imagens/fantasmas.jpg",
+
+    origin: [
+        "Fantasmas são espíritos de pessoas que morreram, mas não seguiram adiante para o além.",
+        "Geralmente estão presos ao mundo dos vivos por causa de emoções fortes, traumas, vingança ou assuntos inacabados."
+    ],
+
+    description: [
+        ": `Fantasmas são manifestações espirituais que podem se tornar hostis ou até mortais.",
+        "Eles costumam aparecer como versões deterioradas ou alteradas de sua aparência em vida.",
+        "Podem manipular o ambiente (mexer objetos, causar quedas de temperatura, influenciar eletrônicos) e às vezes ferir fisicamente.",
+        "Alguns são conscientes, outros repetem eventos de sua morte como ecos do passado."
+    ],
+
+    custom: [
+        "Sua forma costuma ser translúcida ou sombria,",
+        "às vezes aparecem como aparições completas, outras vezes como vultos, sombras ou distorções visuais.",
+        "Podem se manifestar por vozes, gemidos, barulhos de passos ou gritos."
+    ],
+
+    behavior: [
+        "Alguns fantasmas são apenas ecos (resquícios de energia),",
+        "mas muitos têm consciência e podem se tornar vingativos ou agressivos.",
+        "Costumam atacar pessoas ligadas ao seu passado ou que invadem o local onde morreram."
+    ],
+
+    transformation: [
+        "`Fantasmas surgem após a morte de uma pessoa,",
+        "geralmente quando há grande sofrimento, raiva ou apego ao mundo físico.",
+        "Também podem ser criados por maldições, feitiços ou práticas necromânticas."
+    ],
+
+    cure: [
+        "Queimar os restos mortais do fantasma geralmente resolve o caso, libertando o espírito.",
+        "Destruir objetos ligados emocionalmente ao fantasma também pode ajudar (âncoras espirituais).",
+        "Exorcismos, rituais ou símbolos sagrados podem expulsar ou conter fantasmas temporariamente."
+    ],
+
+    weaknesses: [
+        "Sal pode ser usado para proteção ou barreiras contra fantasmas.",
+        "Fantasmas evitam ferro (principalmente ferro consagrado ou ferro antigo).",
+        "Queimar os ossos do espírito é o método mais eficaz para destruí-lo permanentemente.",
+        "Símbolos sagrados e feitiços de banimento podem afastá-los ou imobilizá-los."
+    ],
+    
+    image: "http://localhost:3001/imagens/fantasmas.jpg",
+    }
 ];
 
 module.exports = monstersList;

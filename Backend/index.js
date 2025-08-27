@@ -5,13 +5,14 @@ const cors = require ('cors');
 const users = require("./Models/users");
 const Note = require("./Models/notes");
 const monstersList = require('./Data/monstersList');
+const gunsList = require('./Data/gunsList');
 const path = require('path');
 
 
 app.use(express.json());
 app.use(cors());
 app.use('/imagens', express.static(path.join(__dirname, 'public/imagens')));
-
+app.use('/imguns', express.static(path.join(__dirname, 'public/imguns')));
 
 mongoose.connect("mongodb://localhost:27017/register", {})
 .then(() => {
@@ -119,6 +120,30 @@ app.delete("/note/:id", async (req, res) => {
   await Note.findByIdAndDelete(req.params.id);
   res.sendStatus(204);
 });
+
+app.get("/guns", async (req, res) => {
+  try {
+    res.send(gunsList);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao carregar armas' });
+  }
+});
+
+app.get('/guns/:name', (req, res) => {
+ const { name } = req.params;
+  try {
+    const guns = gunsList.find((m) => m.name === name);
+
+    if (!guns) {
+      return res.status(404).json({ error: 'Arma não encontrada' });
+    }
+
+    res.status(200).json(guns);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao carregar a arma' });
+  }
+});
+
 
 
 app.listen(3001, () => {
