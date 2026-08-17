@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+Hunters.doc
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação full-stack inspirada no conceito do diário de caçadores da série Supernatural.
+A proposta é criar um “diário digital” onde usuários podem pesquisar e consultar os monstros e armas da série, como também suas histórias, origens e fraquezas.
 
-## Available Scripts
+Arquitetura
+- Backend:
+Node.js
+Express
+MongoDB
+Mongoose
+API REST
 
-In the project directory, you can run:
+Estrutura básica:
+backend/
+ ├── models/
+ ├── routes/
+ ├── controllers/
+ ├── config/
+ └── server.js
 
-### `npm start`
+- Frontend:
+React
+Axios (ou fetch, se for o caso)
+Componentização
+Consumo da API própria
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Estrutura básica:
+frontend/
+ ├── components/
+ ├── pages/
+ ├── services/
+ └── App.js
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Funcionalidades:
 
-### `npm test`
+Cadastro de monstros (via backend)
+Listagem de monstros
+Página de detalhes
+Integração com banco de dados MongoDB
+Comunicação completa entre frontend e backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Como Rodar o Projeto?:
 
-### `npm run build`
+1️. Clone o repositório
+git clone https://github.com/Jubz-Cherry/Hunters.doc.git
+cd Hunters.doc
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2️. Backend
+cd Backend
+npm install
+npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3️. Frontend
+npm install
+npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Funcionalidades idealizadas para próximas versões:
+- Autenticação com JWT
+- Sistema de favoritos
+- Perfis de usuário
+- Deploy em ambiente cloud
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Objetivo Técnico:
+Este projeto foi desenvolvido para consolidar conhecimentos em:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Desenvolvimento full-stack
+- Criação e consumo de API REST
+- Integração com banco NoSQL
+- Organização de código em camadas
