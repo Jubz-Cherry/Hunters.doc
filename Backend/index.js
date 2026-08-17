@@ -14,7 +14,7 @@ app.use(cors());
 app.use('/imagens', express.static(path.join(__dirname, 'public/imagens')));
 app.use('/imguns', express.static(path.join(__dirname, 'public/imguns')));
 
-mongoose.connect("mongodb://localhost:27017/register", {})
+mongoose.connect("mongodb://localhost:27017/hunters", {})
 .then(() => {
     console.log("Mongo funcionando!");
 }).catch((err) => {
