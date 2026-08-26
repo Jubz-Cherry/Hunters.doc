@@ -31,7 +31,9 @@ const options = {
     apis: [
         path.resolve(__dirname, "../routes/authRoutes.js"),
         path.resolve(__dirname, "../routes/monsterRoutes.js"),
-        path.resolve(__dirname, "../routes/gunRoutes.js")
+        path.resolve(__dirname, "../routes/gunRoutes.js"),
+        path.resolve(__dirname, "../routes/profileRoutes.js"),
+        path.resolve(__dirname, "../routes/notesRoutes.js")
     ]
 };
 

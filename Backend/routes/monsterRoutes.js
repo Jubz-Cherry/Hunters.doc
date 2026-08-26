@@ -9,6 +9,8 @@ const monstersList = require("../Data/monstersList");
  * /monsters:
  *   get:
  *     summary: Lista todos os monstros
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de monstros retornada com sucesso
@@ -28,6 +30,8 @@ router.get("/monsters", async (req, res) => {
  * /monsters/{name}:
  *   get:
  *     summary: Busca um monstro pelo nome
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: name
@@ -40,6 +44,8 @@ router.get("/monsters", async (req, res) => {
  *         description: Monstro encontrado
  *       404:
  *         description: Monstro não encontrado
+ *       500:
+ *         description: Erro ao carregar o monstro
  */
 router.get("/monsters/:name", async (req, res) => {
     const { name } = req.params;

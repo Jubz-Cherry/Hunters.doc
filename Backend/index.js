@@ -12,7 +12,9 @@ const swaggerSpec = require("./config/swagger");
 const monsterRoutes = require("./routes/monsterRoutes");;
 const authRoutes = require("./routes/authRoutes");
 const gunRoutes = require("./routes/gunRoutes");
-
+const profileRoutes = require("./routes/profileRoutes");
+const notesRoutes = require("./routes/notesRoutes");
+const auth = require("./middleware/auth");
 
 app.use(express.json());
 app.use(cors());
@@ -30,10 +32,15 @@ app.use(
     express.static(path.join(__dirname, "public/imguns"))
 );
 
-// Rotas
-app.use(monsterRoutes);
+
+// Rotas públicas
 app.use(authRoutes);
+
+// Rotas autenticadas
+app.use(monsterRoutes);
 app.use(gunRoutes);
+app.use(profileRoutes);
+app.use(notesRoutes);
 
 // MongoDB
 mongoose

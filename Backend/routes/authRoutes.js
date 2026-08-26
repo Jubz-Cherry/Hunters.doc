@@ -156,26 +156,5 @@ router.post("/login", async (req, res) => {
     }
 });
 
-/**
- * @swagger
- * /profile:
- *   get:
- *     summary: Retorna o usuário autenticado
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Usuário autenticado
- *       401:
- *         description: Token não fornecido
- *       403:
- *         description: Token inválido ou expirado
- */
-router.get("/profile", auth, async (req, res) => {
-    res.json({
-        message: "Você está autenticada!",
-        user: req.user
-    });
-});
 
 module.exports = router;

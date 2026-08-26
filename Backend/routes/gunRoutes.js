@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const register = require("../Data/gunsList");
+const gunsList = require("../Data/gunsList");
 
 /**
  * @swagger
  * /guns:
  *   get:
  *     summary: Lista todos os armas
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de armas retornada com sucesso
@@ -27,6 +29,8 @@ router.get("/guns", async (req, res) => {
  * /guns/{name}:
  *   get:
  *     summary: Busca uma arma pelo nome
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: name
