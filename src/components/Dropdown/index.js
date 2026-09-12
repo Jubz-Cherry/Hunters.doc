@@ -29,6 +29,9 @@ function Dropdown(){
           <Link to="/Home">Home</Link>
           </p>
           <p>
+          <Link to="/profile">Perfil</Link>
+          </p>
+          <p>
           <Link to="/">Sair</Link>
           </p>
         </div>

@@ -1,13 +1,15 @@
 const express = require("express");
+
 const router = express.Router();
 
 const monstersList = require("../Data/monstersList");
-
 
 /**
  * @swagger
  * /monsters:
  *   get:
+ *     tags:
+ *       - Monsters
  *     summary: Lista todos os monstros
  *     security:
  *       - bearerAuth: []
@@ -29,6 +31,8 @@ router.get("/monsters", async (req, res) => {
  * @swagger
  * /monsters/{name}:
  *   get:
+ *     tags:
+ *       - Monsters
  *     summary: Busca um monstro pelo nome
  *     security:
  *       - bearerAuth: []
@@ -64,13 +68,11 @@ router.get("/monsters/:name", async (req, res) => {
         }
 
         res.status(200).json(monster);
-
     } catch (err) {
         res.status(500).json({
             error: "Erro ao carregar o monstro"
         });
     }
 });
-
 
 module.exports = router;

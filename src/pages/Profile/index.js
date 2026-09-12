@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from './Notes.module.css';
+import styles from './Profile.module.css';
 import Header from '../../components/Header';
 import Menu from '../../components/Menu';
 import backgroundImg from '../../img/sw.dw.jpg';

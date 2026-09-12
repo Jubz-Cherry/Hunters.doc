@@ -5,12 +5,17 @@ const users = require("../Models/users");
 const auth = require("../middleware/auth");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const { Resend } = require("resend");
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /**
  * @swagger
  * /profile:
  *   get:
  *     summary: Retorna o usuário autenticado
+ *     tags:
+ *       - Profile
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -28,11 +33,14 @@ router.get("/profile", auth, async (req, res) => {
     });
 });
 
+
 /**
  * @swagger
  * /profile/change:
  *   patch:
  *     summary: Atualiza o usuário
+ *     tags:
+ *       - Profile
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -92,11 +100,14 @@ router.patch("/profile/change", auth, async (req, res) => {
     }
 });
 
+
 /**
  * @swagger
  * /profile/password:
  *   patch:
  *     summary: Atualiza a senha do usuário
+ *     tags:
+ *       - Profile
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -173,6 +184,9 @@ router.patch("/profile/password", auth, async (req, res) => {
  * /profile/forgot-password:
  *   post:
  *     summary: Solicita recuperação de senha
+ *     description: Gera um código de recuperação e envia para o e-mail do usuário.
+ *     tags:
+ *       - Profile
  *     requestBody:
  *       required: true
  *       content:
@@ -184,15 +198,17 @@ router.patch("/profile/password", auth, async (req, res) => {
  *             properties:
  *               email:
  *                 type: string
+ *                 format: email
+ *                 example: usuario@exemplo.com
  *     responses:
  *       200:
- *         description: Solicitação processada
+ *         description: Código de recuperação enviado com sucesso
  *       400:
- *         description: E-mail obrigatório
+ *         description: E-mail não informado
  *       404:
  *         description: Usuário não encontrado
  *       500:
- *         description: Erro ao solicitar recuperação
+ *         description: Erro ao solicitar recuperação de senha
  */
 router.post("/profile/forgot-password", async (req, res) => {
     try {
@@ -212,27 +228,128 @@ router.post("/profile/forgot-password", async (req, res) => {
             });
         }
 
-        // Gera um token aleatório
-        const resetToken = crypto.randomBytes(32).toString("hex");
+        const resetToken = crypto
+            .randomInt(100000, 1000000)
+            .toString();
 
-        // Salva o token no banco
         user.resetPasswordToken = resetToken;
-
-        // Token válido por 15 minutos
         user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
 
         await user.save();
 
-        res.status(200).json({
-            message: "Token de recuperação gerado com sucesso",
-            resetToken: resetToken
+        const { data, error } = await resend.emails.send({
+            from: "Hunters.doc <onboarding@resend.dev>",
+            to: [email],
+            subject: "Código para redefinir sua senha",
+            text: `Seu código de recuperação é: ${resetToken}`
+        });
+
+        if (error) {
+            console.error("Erro ao enviar e-mail:", error);
+
+            return res.status(500).json({
+                error: "Não foi possível enviar o código de recuperação"
+            });
+        }
+
+        console.log("E-mail enviado:", data);
+
+        return res.status(200).json({
+            message: "Código de recuperação enviado para o seu e-mail."
         });
 
     } catch (err) {
         console.error("Erro ao solicitar recuperação:", err);
 
-        res.status(500).json({
+        return res.status(500).json({
             error: "Erro ao solicitar recuperação de senha"
+        });
+    }
+});
+
+
+/**
+ * @swagger
+ * /profile/verify-code:
+ *   post:
+ *     summary: Verifica o código de recuperação de senha
+ *     description: Verifica se o código enviado por e-mail é válido e ainda não expirou.
+ *     tags:
+ *       - Profile
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - resetToken
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: usuario@exemplo.com
+ *               resetToken:
+ *                 type: string
+ *                 example: "583214"
+ *     responses:
+ *       200:
+ *         description: Código válido
+ *       400:
+ *         description: Código ou e-mail inválido
+ *       404:
+ *         description: Usuário não encontrado
+ *       500:
+ *         description: Erro ao verificar código de recuperação
+ */
+router.post("/profile/verify-code", async (req, res) => {
+
+    try {
+        const { email, resetToken } = req.body;
+
+        if (!email) {
+            return res.status(400).json({
+                error: "O e-mail é obrigatório"
+            });
+        }
+
+        if (!resetToken) {
+            return res.status(400).json({
+                error: "O código é obrigatório"
+            });
+        }
+
+        const user = await users.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({
+                error: "Usuário não encontrado"
+            });
+        }
+
+        if (user.resetPasswordToken !== resetToken) {
+            return res.status(400).json({
+                error: "Código de recuperação inválido"
+            });
+        }
+
+        if (user.resetPasswordExpires < Date.now()) {
+            return res.status(400).json({
+                error: "Código de recuperação expirado"
+            });
+        }
+
+        return res.status(200).json({
+            message: "Código válido. Você pode redefinir sua senha."
+        });
+
+    } catch (err) {
+
+        console.error("Erro ao verificar código:", err);
+
+        res.status(500).json({
+            error: "Erro ao verificar código de recuperação"
         });
     }
 });
@@ -243,6 +360,9 @@ router.post("/profile/forgot-password", async (req, res) => {
  * /profile/reset-password:
  *   patch:
  *     summary: Redefine a senha usando um token de recuperação
+ *     description: Redefine a senha do usuário usando o token de recuperação enviado por e-mail.
+ *     tags:
+ *       - Profile
  *     requestBody:
  *       required: true
  *       content:
@@ -293,7 +413,6 @@ router.patch("/profile/reset-password", async (req, res) => {
 
         user.senha = novaSenhaHash;
 
-        // Invalida o token depois de usar
         user.resetPasswordToken = null;
         user.resetPasswordExpires = null;
 
@@ -312,6 +431,51 @@ router.patch("/profile/reset-password", async (req, res) => {
     }
 });
 
+
+/**
+ * @swagger
+ * /profile/delete-profile:
+ *   delete:
+ *     summary: Excluir o perfil do usuário autenticado
+ *     description: Exclui permanentemente a conta do usuário atualmente autenticado.
+ *     tags:
+ *       - Profile
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Perfil excluído com sucesso
+ *       401:
+ *         description: Token não fornecido ou inválido
+ *       404:
+ *         description: Usuário não encontrado
+ *       500:
+ *         description: Erro interno ao excluir perfil
+ */
+router.delete("/profile/delete-profile", auth, async (req, res) => {
+    try {
+        const userId = req.user.userId;
+
+        const deletedUser = await users.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).json({
+                error: "Usuário não encontrado"
+            });
+        }
+
+        res.status(200).json({
+            message: "Perfil excluído com sucesso!"
+        });
+
+    } catch (err) {
+        console.error("Erro ao excluir perfil:", err);
+
+        res.status(500).json({
+            error: "Erro ao excluir perfil"
+        });
+    }
+});
 
 
 module.exports = router;

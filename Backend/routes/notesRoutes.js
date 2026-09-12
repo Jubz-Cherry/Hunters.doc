@@ -1,13 +1,17 @@
 const express = require("express");
+
 const router = express.Router();
 
 const Note = require("../Models/notes.js");
+
 const auth = require("../middleware/auth");
 
 /**
  * @swagger
  * /notes:
  *   get:
+ *     tags:
+ *       - Notes
  *     summary: Lista as notas do usuário autenticado
  *     security:
  *       - bearerAuth: []
@@ -21,14 +25,12 @@ const auth = require("../middleware/auth");
  *       500:
  *         description: Erro ao buscar notas
  */
-router.get("/notes",auth, async (req, res) => {
+router.get("/notes", auth, async (req, res) => {
     try {
         const userId = req.user.userId;
-
         const userNote = await Note.find({ userId });
 
         res.status(200).json(userNote);
-
     } catch (error) {
         console.error("Erro ao buscar notas:", error);
 
@@ -42,6 +44,8 @@ router.get("/notes",auth, async (req, res) => {
  * @swagger
  * /notes/makenote:
  *   post:
+ *     tags:
+ *       - Notes
  *     summary: Cria uma nova nota
  *     security:
  *       - bearerAuth: []
@@ -73,7 +77,7 @@ router.get("/notes",auth, async (req, res) => {
  *       500:
  *         description: Erro ao criar nota
  */
-router.post("/notes/makenote",auth, async (req, res) => {
+router.post("/notes/makenote", auth, async (req, res) => {
     try {
         const { title, content } = req.body;
         const userId = req.user.userId;
@@ -93,7 +97,6 @@ router.post("/notes/makenote",auth, async (req, res) => {
         await newNote.save();
 
         res.status(201).json(newNote);
-
     } catch (error) {
         console.error("Erro ao criar nota:", error);
 
@@ -107,6 +110,8 @@ router.post("/notes/makenote",auth, async (req, res) => {
  * @swagger
  * /notes/{id}:
  *   patch:
+ *     tags:
+ *       - Notes
  *     summary: Atualiza uma nota do usuário autenticado
  *     security:
  *       - bearerAuth: []
@@ -142,7 +147,7 @@ router.post("/notes/makenote",auth, async (req, res) => {
  *       500:
  *         description: Erro ao atualizar nota
  */
-router.patch("/notes/:id",auth, async (req, res) => {
+router.patch("/notes/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
         const { title, content } = req.body;
@@ -169,7 +174,6 @@ router.patch("/notes/:id",auth, async (req, res) => {
         }
 
         res.status(200).json(updatedNote);
-
     } catch (error) {
         console.error("Erro ao atualizar nota:", error);
 
@@ -183,6 +187,8 @@ router.patch("/notes/:id",auth, async (req, res) => {
  * @swagger
  * /notes/{id}:
  *   delete:
+ *     tags:
+ *       - Notes
  *     summary: Deleta uma nota do usuário autenticado
  *     security:
  *       - bearerAuth: []
@@ -205,7 +211,7 @@ router.patch("/notes/:id",auth, async (req, res) => {
  *       500:
  *         description: Erro ao deletar nota
  */
-router.delete("/notes/:id",auth, async (req, res) => {
+router.delete("/notes/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
         const userId = req.user.userId;
@@ -231,7 +237,6 @@ router.delete("/notes/:id",auth, async (req, res) => {
         }
 
         res.status(200).json(updatedNote);
-
     } catch (error) {
         console.error("Erro ao atualizar nota:", error);
 
