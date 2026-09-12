@@ -44,13 +44,14 @@ app.use(notesRoutes);
 
 // MongoDB
 mongoose
-    .connect("mongodb://localhost:27017/hunters")
+    .connect(process.env.MONGO_URI)
     .then(() => {
         console.log("Mongo funcionando!");
     })
     .catch((err) => {
         console.log("Mongo não está conectado", err);
     });
+
 
 // Servidor
 app.listen(3001, () => {
