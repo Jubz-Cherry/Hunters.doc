@@ -177,8 +177,7 @@ router.patch("/profile/password", auth, async (req, res) => {
         });
     }
 });
-
-
+[]
 /**
  * @swagger
  * /profile/forgot-password:
