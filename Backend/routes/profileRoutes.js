@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const { Resend } = require("resend");
+const { passwordResetLimiter } = require("../middleware/rate-limit");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -27,10 +28,28 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  *         description: Token inválido ou expirado
  */
 router.get("/profile", auth, async (req, res) => {
-    res.json({
-        message: "Você está autenticada!",
-        user: req.user
-    });
+    try {
+        const user = await users
+            .findById(req.user.userId)
+            .select("-senha -resetPasswordToken -resetPasswordExpires");
+
+        if (!user) {
+            return res.status(404).json({
+                error: "Usuário não encontrado"
+            });
+        }
+
+        res.status(200).json({
+            message: "Você está autenticada!",
+            user
+        });
+    } catch (err) {
+        console.error("Erro ao buscar perfil:", err);
+
+        res.status(500).json({
+            error: "Erro ao buscar perfil"
+        });
+    }
 });
 
 
@@ -209,7 +228,7 @@ router.patch("/profile/password", auth, async (req, res) => {
  *       500:
  *         description: Erro ao solicitar recuperação de senha
  */
-router.post("/profile/forgot-password", async (req, res) => {
+router.post("/profile/forgot-password", passwordResetLimiter, async (req, res) => {
     try {
         const { email } = req.body;
 
@@ -302,7 +321,7 @@ router.post("/profile/forgot-password", async (req, res) => {
  *       500:
  *         description: Erro ao verificar código de recuperação
  */
-router.post("/profile/verify-code", async (req, res) => {
+router.post("/profile/verify-code", passwordResetLimiter, async (req, res) => {
 
     try {
         const { email, resetToken } = req.body;
@@ -384,7 +403,7 @@ router.post("/profile/verify-code", async (req, res) => {
  *       500:
  *         description: Erro ao atualizar senha
  */
-router.patch("/profile/reset-password", async (req, res) => {
+router.patch("/profile/reset-password", passwordResetLimiter, async (req, res) => {
     try {
         const { token, novaSenha } = req.body;
 

@@ -12,7 +12,7 @@ function MonsterDetails() {
   const [monsters, setMonster] = useState(null);
 
   useEffect(() => {
-    API.get('http://localhost:3001/monsters')
+    API.get('/monsters')
       .then(res => {
         const found = res.data.find(m => m.name.toLowerCase() === name.toLowerCase());
         console.log('Monstro encontrado:', found);

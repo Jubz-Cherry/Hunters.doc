@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const users = require("../Models/users");
 const auth = require("../middleware/auth");
+const { authLimiter } = require("../middleware/rate-limit");
 
 /**
  * @swagger
@@ -32,7 +33,7 @@ const auth = require("../middleware/auth");
  *       500:
  *         description: Erro ao criar usuário
  */
-router.post("/register", async (req, res) => {
+router.post("/register", authLimiter, async (req, res) => {
     try {
         const { name, email, senha } = req.body;
 
@@ -98,7 +99,7 @@ router.post("/register", async (req, res) => {
  *       401:
  *         description: Email ou senha inválidos
  */
-router.post("/login", async (req, res) => {
+router.post("/login", authLimiter, async (req, res) => {
     const { email, senha } = req.body;
 
     if (!email || !senha) {

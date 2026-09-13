@@ -21,7 +21,7 @@ function Guns() {
   };
 
   useEffect(() => {
-    API.get('http://localhost:3001/guns')
+    API.get('/guns')
       .then((res) => setGuns(res.data))
       .catch((err) => console.error('Erro ao buscar armas:', err));
   }, []);
