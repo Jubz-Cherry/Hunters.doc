@@ -10,20 +10,22 @@ import GunsDetails from './pages/Gunspage/gunsDetails';
 import ResetPassword from './pages/ResetPassword';
 import Forgotpassword from './pages/ForgotPassword';
 import VerifyCode from './pages/Verifycode';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/home" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/ForgotPassword" element={<Forgotpassword />} />
       <Route path="/ResetPassword" element={<ResetPassword />} />
       <Route path="/VerifyCode" element={<VerifyCode />} />
-      <Route path="/monsters/:name" element={<MonsterDetails />}/>
-      <Route path="/profile" element={<Profile />}/>
-      <Route path="/guns" element={<Guns />}/>
-      <Route path="/guns/:name" element={<GunsDetails />}/>
+
+      <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+      <Route path="/monsters/:name" element={<PrivateRoute><MonsterDetails /></PrivateRoute>}/>
+      <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
+      <Route path="/guns" element={<PrivateRoute><Guns /></PrivateRoute>}/>
+      <Route path="/guns/:name" element={<PrivateRoute><GunsDetails /></PrivateRoute>}/>
     </Routes>
   );
 }

@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const monstersList = require("../Data/monstersList");
+const auth = require("../middleware/auth");
 
 /**
  * @swagger
@@ -17,7 +18,7 @@ const monstersList = require("../Data/monstersList");
  *       200:
  *         description: Lista de monstros retornada com sucesso
  */
-router.get("/monsters", async (req, res) => {
+router.get("/monsters", auth, async (req, res) => {
     try {
         res.send(monstersList);
     } catch (err) {
@@ -51,7 +52,7 @@ router.get("/monsters", async (req, res) => {
  *       500:
  *         description: Erro ao carregar o monstro
  */
-router.get("/monsters/:name", async (req, res) => {
+router.get("/monsters/:name", auth, async (req, res) => {
     const { name } = req.params;
 
     try {

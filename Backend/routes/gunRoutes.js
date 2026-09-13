@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const gunsList = require("../Data/gunsList");
+const auth = require("../middleware/auth");
 
 /**
  * @swagger
@@ -19,7 +20,7 @@ const gunsList = require("../Data/gunsList");
  *       500:
  *         description: Erro ao carregar armas
  */
-router.get("/guns", async (req, res) => {
+router.get("/guns", auth, async (req, res) => {
     try {
         res.send(gunsList);
     } catch (err) {
@@ -53,7 +54,7 @@ router.get("/guns", async (req, res) => {
  *       500:
  *         description: Erro ao carregar a arma
  */
-router.get("/guns/:name", (req, res) => {
+router.get("/guns/:name", auth, (req, res) => {
     const { name } = req.params;
 
     try {
