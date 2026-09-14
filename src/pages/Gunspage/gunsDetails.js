@@ -12,7 +12,7 @@ function GunsDetails(){
   const [guns, setGuns] = useState(null);
 
   useEffect(() => {
-    API.get('http://localhost:3001/guns')
+    API.get('/guns')
       .then(res => {
         const found = res.data.find(m => m.name.toLowerCase() === name.toLowerCase());
         console.log('Arma encontrada:', found);

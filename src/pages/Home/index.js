@@ -22,7 +22,7 @@ function Home() {
   };
 
   useEffect(() => {
-    API.get('http://localhost:3001/monsters')
+    API.get('/monsters')
       .then((res) => setMonsters(res.data))
       .catch((err) => console.error('Erro ao buscar monstros:', err));
   }, []);

@@ -10,6 +10,11 @@ function Menu(){
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  };
+
     return(
         <>
             <div className={styles.menuWrapper}>
@@ -26,7 +31,10 @@ function Menu(){
           <Link to="/guns">Armas</Link>
           </p>
           <p>
-          <Link to="/">Sair</Link>
+          <Link to="/profile">Meu perfil</Link>
+          </p>
+          <p>
+          <Link to="/" onClick={handleLogout}>Sair</Link>
           </p>
         </div>
       )}

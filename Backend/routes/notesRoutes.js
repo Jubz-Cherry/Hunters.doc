@@ -153,14 +153,20 @@ router.patch("/notes/:id", auth, async (req, res) => {
         const { title, content } = req.body;
         const userId = req.user.userId;
 
+        if (!title || !content) {
+            return res.status(400).json({
+                message: "Título e conteúdo são obrigatórios"
+            });
+        }
+
         const updatedNote = await Note.findOneAndUpdate(
             {
                 _id: id,
                 userId: userId
             },
             {
-                title,
-                content
+                titulo: title,
+                conteudo: content
             },
             {
                 new: true
@@ -216,32 +222,25 @@ router.delete("/notes/:id", auth, async (req, res) => {
         const { id } = req.params;
         const userId = req.user.userId;
 
-        const updatedNote = await Note.findOneAndUpdate(
-            {
-                _id: id,
-                userId: userId
-            },
-            {
-                title,
-                content
-            },
-            {
-                new: true
-            }
-        );
+        const deletedNote = await Note.findOneAndDelete({
+            _id: id,
+            userId: userId
+        });
 
-        if (!updatedNote) {
+        if (!deletedNote) {
             return res.status(404).json({
                 message: "Nota não encontrada"
             });
         }
 
-        res.status(200).json(updatedNote);
+        res.status(200).json({
+            message: "Nota deletada com sucesso!"
+        });
     } catch (error) {
-        console.error("Erro ao atualizar nota:", error);
+        console.error("Erro ao deletar nota:", error);
 
         res.status(500).json({
-            message: "Erro ao atualizar nota"
+            message: "Erro ao deletar nota"
         });
     }
 });
