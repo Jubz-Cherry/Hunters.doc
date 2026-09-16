@@ -34,11 +34,6 @@ function Login() {
 
   }
 
-  const goToForgotPassword = (e) => {
-    e.preventDefault();
-    navigate('/ForgotPassword');
-  };
-
   const goToRegister = (e) => {
     e.preventDefault();
     navigate('/Register');
@@ -63,9 +58,6 @@ function Login() {
             <button type="submit">Entrar</button>
             <p>
               Não tem conta? <Link onClick={goToRegister} className={style.Link}>Registre-se!</Link>
-            </p>
-            <p>
-              Esqueceu sua senha? <Link onClick={goToForgotPassword} className={style.Link}>Clique aqui!</Link>
             </p>
           </form>
         </div>

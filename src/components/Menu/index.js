@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-function Menu(){
+function Menu({ inline = false, buttonClassName = '' }){
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -17,15 +17,15 @@ function Menu(){
 
     return(
         <>
-            <div className={styles.menuWrapper}>
-      <button onClick={toggleMenu} className={styles.menuButton}>
+            <div className={`${styles.menuWrapper} ${inline ? styles.inline : ''}`}>
+          <button onClick={toggleMenu} className={`${styles.menuButton} ${buttonClassName}`} aria-label="Abrir menu" type="button">
         &#9776;
       </button>
 
       {isOpen && (
         <div className={styles.menu}>
           <p>
-          <Link to="/Home">Home</Link>
+          <Link to="/home">Home</Link>
           </p>
           <p>
           <Link to="/guns">Armas</Link>

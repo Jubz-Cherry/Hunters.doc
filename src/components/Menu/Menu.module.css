@@ -5,6 +5,12 @@
   z-index: 1000;
 }
 
+.inline {
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
 .menuButton {
   font-size: 24px;
   background: none;

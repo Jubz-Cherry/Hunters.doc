@@ -8,8 +8,6 @@ import Profile from './pages/Profile';
 import Guns from './pages/Guns';
 import GunsDetails from './pages/Gunspage/gunsDetails';
 import ResetPassword from './pages/ResetPassword';
-import Forgotpassword from './pages/ForgotPassword';
-import VerifyCode from './pages/Verifycode';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -17,9 +15,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/ForgotPassword" element={<Forgotpassword />} />
       <Route path="/ResetPassword" element={<ResetPassword />} />
-      <Route path="/VerifyCode" element={<VerifyCode />} />
 
       <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
       <Route path="/monsters/:name" element={<PrivateRoute><MonsterDetails /></PrivateRoute>}/>
