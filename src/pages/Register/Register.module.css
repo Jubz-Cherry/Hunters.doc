@@ -78,3 +78,10 @@ html, body {
   align-items: center; 
   padding-left: 60px;  
 }
+
+@media (max-width: 600px) {
+  .background { min-height: 100svh; height: auto; padding: 24px 16px; }
+  .register-container { min-height: calc(100svh - 48px); height: auto; }
+  .register-form { width: 100%; max-width: 420px; padding: 28px 20px; gap: 14px; }
+  .register-form input, .register-form button[type="submit"] { width: 100%; padding: 16px; }
+}

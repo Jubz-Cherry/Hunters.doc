@@ -108,3 +108,11 @@
   color: #8fd694;
   margin: 0;
 }
+
+@media (max-width: 600px) {
+  .background { padding: 28px 12px; }
+  .notesContainer { padding: 18px 14px; }
+  .noteForm, .profileForm { padding: 14px; }
+  .cardsWrapper { grid-template-columns: 1fr; }
+  .saveButton { align-self: stretch; }
+}

@@ -4,3 +4,20 @@
 .attributeGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 30px 0 26px; border-top: 1px solid rgba(190, 135, 72, .22); border-bottom: 1px solid rgba(190, 135, 72, .22); }.attribute { min-width: 0; padding: 15px 10px; text-align: center; border-right: 1px solid rgba(190, 135, 72, .22); }.attribute:last-child { border: 0; }.attribute span { color: #b28c62; font-size: 28px; }.attribute h2 { margin: 8px 0 5px; color: #c4a27c; font-size: 12px; font-weight: normal; }.attribute p { margin: 0; color: #c6b9aa; font-size: 13px; line-height: 1.3; }.notes { display: grid; gap: 11px; max-width: 570px; }.note { padding: 17px 18px; border: 1px solid rgba(190, 135, 72, .28); border-radius: 7px; background: rgba(11, 10, 8, .6); }.note h2 { margin: 0 0 10px; color: #bf554a; font-size: 14px; font-weight: normal; }.note p { margin: 0; color: #d0c4b7; font-size: 15px; line-height: 1.42; }
 .pagination { position: absolute; right: 32px; bottom: 30px; display: flex; overflow: hidden; border: 1px solid rgba(190, 135, 72, .45); border-radius: 5px; background: rgba(7, 7, 6, .74); }.pagination button { border: 0; border-right: 1px solid rgba(190, 135, 72, .3); padding: 13px 17px; background: transparent; color: #c5b4a2; font: 14px Georgia, serif; text-transform: uppercase; cursor: pointer; }.pagination button:last-child { border: 0; color: #c9544c; }.pagination button:disabled { opacity: .35; cursor: default; }.status { min-height: 100vh; display: grid; place-items: center; color: #d9c6b0; background: #080909; font: 20px Georgia, serif; }
 @media (max-width: 960px) { .layout { grid-template-columns: 1fr; }.sidebar { border-right: 0; border-bottom: 1px solid rgba(190, 135, 72, .26); }.monsterList { grid-template-columns: repeat(3, 1fr); }.monsterThumb { min-height: 90px; }.monsterThumb span { font-size: 20px; }.heroImage { background-position: right center; opacity: .52; }.heroShade { background: linear-gradient(90deg, rgba(9,10,9,.96), rgba(9,10,9,.73) 64%, rgba(9,10,9,.32)); } }@media (max-width: 600px) { .topbar { height: 67px; gap: 15px; }.brand { font-size: 29px; }.profileButton { padding: 9px 12px; }.profileButton span { display: none; }.monsterList { grid-template-columns: repeat(2, 1fr); }.mainContent { padding: 34px 19px 112px; }.attributeGrid { grid-template-columns: repeat(2, 1fr); }.attribute:nth-child(2) { border-right: 0; }.attribute:nth-child(-n+2) { border-bottom: 1px solid rgba(190, 135, 72, .22); }.pagination { right: 18px; bottom: 20px; }.pagination button { padding: 11px; }.leadText { font-size: 16px; } }
+
+@media (max-width: 600px) {
+	.topbar { padding: 0 16px; gap: 14px; }
+	.brand { min-width: 0; font-size: 25px; letter-spacing: -1px; }
+	.layout { display: block; }
+	.sidebar { padding: 16px 12px; }
+	.monsterList { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+	.monsterThumb { min-height: 76px; }
+	.monsterThumb span { padding: 12px; font-size: 16px; }
+	.mainContent { padding: 30px 18px 120px; }
+	.mainContent h1 { font-size: clamp(42px, 14vw, 62px); overflow-wrap: anywhere; }
+	.attributeGrid { grid-template-columns: 1fr 1fr; }
+	.attribute { padding: 12px 7px; }
+	.attribute p { overflow-wrap: anywhere; }
+	.pagination { left: 18px; right: 18px; justify-content: space-between; }
+	.pagination button { flex: 1; }
+}

@@ -5,3 +5,12 @@
 .gunCard { position: relative; isolation: isolate; min-height: 330px; overflow: hidden; border: 1px solid rgba(193, 142, 77, .68); border-radius: 12px; cursor: pointer; background: #12100e; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }.gunCard:hover, .gunCard:focus-visible { transform: translateY(-5px); border-color: #e6a858; box-shadow: 0 16px 28px rgba(0, 0, 0, .45); outline: none; }.gunCard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: -2; transition: transform .4s ease; }.gunCard:hover img { transform: scale(1.05); }.cardShade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(7, 7, 6, .88) 0%, rgba(6, 6, 5, .24) 70%), linear-gradient(0deg, rgba(4, 4, 3, .8), transparent 54%); }.cardContent { display: flex; height: 100%; min-height: 330px; flex-direction: column; align-items: flex-start; padding: 38px 31px 20px; }.cardContent h2 { max-width: 100%; margin: 0; font-size: clamp(31px, 3vw, 48px); text-transform: uppercase; text-shadow: 2px 2px 0 #3d3026; }.cardContent p { max-width: 240px; margin: auto 0 16px; color: #e0d8cf; line-height: 1.45; font-size: 17px; }.cardFooter { width: 100%; padding-top: 13px; border-top: 1px solid rgba(191, 138, 72, .7); display: flex; align-items: center; justify-content: space-between; color: #e1a65b; font-size: 18px; }.cardFooter i { width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid var(--gold); border-radius: 50%; font: 43px Georgia, serif; line-height: 35px; }.error, .empty { padding: 16px; border: 1px solid #804339; background: rgba(93, 24, 20, .32); color: #f0c4bb; }
 @media (max-width: 900px) { .topbar { grid-template-columns: auto 1fr auto; }.searchBox { grid-column: 1 / -1; grid-row: 2; margin-bottom: 14px; }.topbar { padding-top: 12px; }.cardsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }@media (max-width: 560px) { .topbar { min-height: 66px; gap: 12px; }.brand { font-size: 29px; }.profileButton { padding: 9px 12px; }.profileButton span { display: none; }.content { padding: 40px 16px; }.cardsGrid { grid-template-columns: 1fr; }.gunCard, .cardContent { min-height: 300px; } }
 
+@media (max-width: 560px) {
+	.topbar { grid-template-columns: auto 1fr auto; padding: 10px 16px; }
+	.brand { min-width: 0; font-size: 25px; letter-spacing: -1px; }
+	.searchBox { height: 44px; margin-bottom: 4px; }
+	h1 { font-size: 48px; }
+	.intro { font-size: 17px; }
+	.cardContent { padding: 28px 22px 18px; }
+}
+
