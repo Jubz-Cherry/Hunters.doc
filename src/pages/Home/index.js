@@ -1,3 +1,5 @@
+import { usePreferences } from '../../preferences';
+import { localizeRecord } from '../../localizedRecords';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import API from '../../services/API';
@@ -6,6 +8,7 @@ import backgroundImg from '../../img/estrada.jpg';
 import Menu from '../../components/Menu';
 
 function Home() {
+  const { t, language } = usePreferences();
   const [searchTerm, setSearchTerm] = useState('');
   const [monsters, setMonsters] = useState([]);
   const [error, setError] = useState('');
@@ -14,17 +17,17 @@ function Home() {
   useEffect(() => {
     API.get('/monsters')
       .then((res) => setMonsters(res.data))
-      .catch(() => setError('Não foi possível carregar o bestiário. Tente novamente em alguns instantes.'));
-  }, []);
+      .catch(() => setError(t('Não foi possível carregar o bestiário. Tente novamente em alguns instantes.', 'Could not load the bestiary. Please try again later.')));
+  }, [t]);
 
   const filteredMonsters = useMemo(
-    () => monsters.filter((monster) => monster.name.toLowerCase().includes(searchTerm.toLowerCase())),
-    [monsters, searchTerm]
+    () => monsters.map((monster) => localizeRecord(monster, language, 'monster')).filter((monster) => (monster.name + ' ' + (monster.displayName || '')).toLowerCase().includes(searchTerm.toLowerCase())),
+    [monsters, searchTerm, language]
   );
 
   const getExcerpt = (monster) => {
     const text = Array.isArray(monster.description) ? monster.description[0] : monster.description;
-    return text || 'Conheça os registros desta criatura.';
+    return text || t('Conheça os registros desta criatura.', 'Explore this creature record.');
   };
 
   return (
@@ -34,15 +37,15 @@ function Home() {
         <button className={style.brand} type="button" onClick={() => navigate('/home')}>Hunters.doc</button>
         <label className={style.searchBox}>
           <span>⌕</span>
-          <input type="search" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} placeholder="Pesquisar criatura..." aria-label="Pesquisar criatura" />
+          <input type="search" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} placeholder={t("Pesquisar criatura...", "Search creatures...")} aria-label={t("Pesquisar criatura", "Search creatures")} />
         </label>
-        <button className={style.profileButton} type="button" onClick={() => navigate('/profile')}>◎ <span>Meu Perfil</span></button>
+        <button className={style.profileButton} type="button" onClick={() => navigate('/profile')}>◎ <span>{t("Meu Perfil", "My Profile")}</span></button>
       </header>
 
       <section className={style.content}>
-        <p className={style.eyebrow}>CONHEÇA O SOBRENATURAL</p>
-        <h1>Criaturas</h1>
-        <p className={style.intro}>Explore os seres que habitam as sombras.</p>
+        <p className={style.eyebrow}>{t("CONHEÇA O SOBRENATURAL", "DISCOVER THE SUPERNATURAL")}</p>
+        <h1>{t("Criaturas", "Creatures")}</h1>
+        <p className={style.intro}>{t("Explore os seres que habitam as sombras.", "Explore the beings that live in the shadows.")}</p>
         {error && <p className={style.error}>{error}</p>}
         <div className={style.cardsGrid}>
           {filteredMonsters.map((monster) => (
@@ -50,14 +53,14 @@ function Home() {
               <img src={monster.image} alt="" />
               <div className={style.cardShade} />
               <div className={style.cardContent}>
-                <h2>{monster.name}</h2>
+                <h2>{monster.displayName || monster.name}</h2>
                 <p>{getExcerpt(monster)}</p>
-                <div className={style.cardFooter}><span>Ver detalhes</span><i aria-hidden="true">›</i></div>
+                <div className={style.cardFooter}><span>{t("Ver detalhes", "View details")}</span><i aria-hidden="true">›</i></div>
               </div>
             </article>
           ))}
         </div>
-        {!error && monsters.length > 0 && filteredMonsters.length === 0 && <p className={style.empty}>Nenhuma criatura encontrada.</p>}
+        {!error && monsters.length > 0 && filteredMonsters.length === 0 && <p className={style.empty}>{t("Nenhuma criatura encontrada.", "No creatures found.")}</p>}
       </section>
     </main>
   );

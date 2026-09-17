@@ -5,8 +5,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import backgroundImg from '../../img/sobrenatural.jpg';
 import API from '../../services/API';
+import { usePreferences } from '../../preferences';
 
 function VerifyCode() {
+    const { t } = usePreferences();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,12 +24,12 @@ function VerifyCode() {
         e.preventDefault();
 
         if (!email) {
-            setError("E-mail não encontrado.");
+            setError(t("E-mail não encontrado.", "Email not found."));
             return;
         }
 
         if (!resetToken) {
-            setError("Digite o código recebido por e-mail.");
+            setError(t("Digite o código recebido por e-mail.", "Enter the code sent by email."));
             return;
         }
 
@@ -56,7 +58,7 @@ function VerifyCode() {
 
             setError(
                 error.response?.data?.error ||
-                "Código inválido ou expirado."
+                t("Código inválido ou expirado.", "Invalid or expired code.")
             );
         }
     }
@@ -76,15 +78,15 @@ function VerifyCode() {
                         onSubmit={handleVerifyCode}
                     >
 
-                        <h1>Verifique seu e-mail</h1>
+                        <h1>{t("Verifique seu e-mail", "Check your email")}</h1>
 
                         <p>
-                            Digite o código de 6 dígitos enviado para seu e-mail.
+                            {t("Digite o código de 6 dígitos enviado para seu e-mail.", "Enter the six-digit code sent to your email.")}
                         </p>
 
                         <input
                             type="text"
-                            placeholder="Código de recuperação"
+                            placeholder={t("Código de recuperação", "Recovery code")}
                             value={resetToken}
                             onChange={(e) => setResetToken(e.target.value)}
                             maxLength={6}
@@ -100,7 +102,7 @@ function VerifyCode() {
                         )}
 
                         <button type="submit">
-                            Verificar código
+                            {t("Verificar código", "Verify code")}
                         </button>
 
                     </form>

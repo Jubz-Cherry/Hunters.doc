@@ -1,0 +1,29 @@
+.page { --gold: #bf8a48; --paper: #e5dbcf; min-height: 100vh; color: var(--paper); background: linear-gradient(90deg, rgba(4, 5, 5, .97), rgba(7, 7, 6, .88)), var(--page-background) center / cover fixed; font-family: "Trebuchet MS", Arial, sans-serif; }
+.topbar { position: sticky; top: 0; z-index: 5; min-height: 82px; display: grid; grid-template-columns: auto minmax(190px, 270px) minmax(220px, 600px) auto; align-items: center; gap: clamp(16px, 3vw, 54px); padding: 0 4vw; background: rgba(5, 6, 6, .94); border-bottom: 1px solid rgba(191, 138, 72, .22); box-shadow: 0 4px 22px rgba(0, 0, 0, .42); }
+.menuButton, .brand, .profileButton { color: var(--paper); background: none; border: 0; cursor: pointer; }.menuButton { font-size: 30px; padding: 0; color: #c6b5a0; }.brand { text-align: left; padding: 0; font: 700 clamp(28px, 3vw, 43px) Georgia, serif; letter-spacing: -2px; }.searchBox { display: flex; align-items: center; gap: 12px; border: 1px solid rgba(191, 138, 72, .22); border-radius: 999px; padding: 0 18px; height: 48px; color: var(--gold); }.searchBox span { font-size: 30px; line-height: 0; transform: rotate(-15deg); }.searchBox input { width: 100%; border: 0; outline: 0; color: var(--paper); background: transparent; font: 16px "Trebuchet MS", sans-serif; }.searchBox input::placeholder { color: #897c70; }.profileButton { border: 1px solid rgba(191, 138, 72, .48); border-radius: 999px; padding: 11px 18px; font: 17px Georgia, serif; white-space: nowrap; color: #d5c3ae; }
+.content { max-width: 1420px; margin: 0 auto; padding: clamp(44px, 5vw, 76px) clamp(22px, 4vw, 62px) 60px; }.eyebrow { margin: 0 0 10px; color: #9b9084; font: 700 14px "Trebuchet MS", sans-serif; letter-spacing: 2px; }h1, h2 { font-family: Georgia, "Times New Roman", serif; }h1 { margin: 0; font-size: clamp(50px, 6vw, 80px); letter-spacing: 1px; text-shadow: 1px 2px 0 #4a3a2d; }.intro { margin: 8px 0 31px; color: #b4aaa0; font-size: 20px; }.cardsGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.markCard { position: relative; isolation: isolate; min-height: 330px; overflow: hidden; border: 1px solid rgba(193, 142, 77, .68); border-radius: 12px; cursor: pointer; background: #12100e; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }.markCard:hover, .markCard:focus-visible { transform: translateY(-5px); border-color: #e6a858; box-shadow: 0 16px 28px rgba(0, 0, 0, .45); outline: none; }.markCard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: -2; transition: transform .4s ease; }.markCard:hover img { transform: scale(1.05); }.cardShade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(7, 7, 6, .88) 0%, rgba(6, 6, 5, .24) 70%), linear-gradient(0deg, rgba(4, 4, 3, .8), transparent 54%); }.cardContent { display: flex; height: 100%; min-height: 330px; flex-direction: column; align-items: flex-start; padding: 38px 31px 20px; }.cardContent h2 { max-width: 100%; margin: 0; font-size: clamp(31px, 3vw, 48px); text-transform: uppercase; text-shadow: 2px 2px 0 #3d3026; }.cardContent p { max-width: 240px; margin: auto 0 16px; color: #e0d8cf; line-height: 1.45; font-size: 17px; }.cardFooter { width: 100%; padding-top: 13px; border-top: 1px solid rgba(191, 138, 72, .7); display: flex; align-items: center; justify-content: space-between; color: #e1a65b; font-size: 18px; }.cardFooter i { width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid var(--gold); border-radius: 50%; font: 43px Georgia, serif; line-height: 35px; }.error, .empty { padding: 16px; border: 1px solid #804339; background: rgba(93, 24, 20, .32); color: #f0c4bb; }
+@media (max-width: 900px) { .topbar { grid-template-columns: auto 1fr auto; }.searchBox { grid-column: 1 / -1; grid-row: 2; margin-bottom: 14px; }.topbar { padding-top: 12px; }.cardsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }@media (max-width: 560px) { .topbar { min-height: 66px; gap: 12px; }.brand { font-size: 29px; }.profileButton { padding: 9px 12px; }.profileButton span { display: none; }.content { padding: 40px 16px; }.cardsGrid { grid-template-columns: 1fr; }.markCard, .cardContent { min-height: 300px; } }
+
+@media (max-width: 560px) {
+	.topbar { grid-template-columns: auto 1fr auto; padding: 10px 16px; }
+	.brand { min-width: 0; font-size: 25px; letter-spacing: -1px; }
+	.searchBox { height: 44px; margin-bottom: 4px; }
+	h1 { font-size: 48px; }
+	.intro { font-size: 17px; }
+	.cardContent { padding: 28px 22px 18px; }
+}
+
+.cardPlaceholder {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: grid;
+  place-items: center;
+  color: #8d6944;
+  background: radial-gradient(circle, #393126, #14120f 70%);
+  font: 150px Georgia, serif;
+}
+.markCard img[hidden] { display: none; }
+.cardContent h2 { overflow-wrap: anywhere; font-size: clamp(26px, 2.6vw, 43px); }
+

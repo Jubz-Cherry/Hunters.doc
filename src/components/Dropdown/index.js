@@ -23,10 +23,7 @@ function Dropdown(){
           <Link to="/guns">Armas</Link>
           </p>
           <p>
-          <Link to="/Home">Home</Link>
-          </p>
-          <p>
-          <Link to="/profile">Perfil</Link>
+          <Link to="/marks">Marcas e Símbolos</Link>
           </p>
           <p>
           <Link to="/">Sair</Link>

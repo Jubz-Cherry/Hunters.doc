@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 import backgroundImg from '../../img/sobrenatural.jpg';
 import API from '../../services/API';
+import { usePreferences } from '../../preferences';
 
 function Forgotpass() {
+    const { t } = usePreferences();
 
     const [form, setForm] = useState({
         email: ''
@@ -49,7 +51,7 @@ function Forgotpass() {
 
             setError(
                 error.response?.data?.error ||
-                "Erro ao confirmar o e-mail."
+                t("Erro ao confirmar o e-mail.", "Could not confirm the email.")
             );
         }
     }
@@ -67,7 +69,7 @@ function Forgotpass() {
                         onSubmit={handleForgotPassword}
                     >
 
-                        <h1>Coloque seu e-mail!</h1>
+                        <h1>{t("Coloque seu e-mail!", "Enter your email!")}</h1>
 
                         <input
                             type="email"
@@ -85,7 +87,7 @@ function Forgotpass() {
                         )}
 
                         <button type="submit">
-                            Confirmar e-mail
+                            {t("Confirmar e-mail", "Confirm email")}
                         </button>
 
                     </form>

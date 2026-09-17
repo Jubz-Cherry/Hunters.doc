@@ -1,3 +1,4 @@
+import { usePreferences } from '../../preferences';
 import React, { useState } from "react";
 import style from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
@@ -5,6 +6,7 @@ import backgroundImg from "../../img/sobrenatural.jpg";
 import API from "../../services/API";
 
 function Register() {
+  const { t, language } = usePreferences();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -22,10 +24,10 @@ function Register() {
 
     try {
       const response = await API.post("/register", form);
-      alert(response.data.message);
+      alert(language === 'en' ? 'Account created successfully.' : response.data.message);
       navigate("/Home");
     } catch (error) {
-      alert("Erro ao registrar usuário");
+      alert(t("Erro ao registrar usuário", "Could not register user"));
       console.error(error);
     }
   }
@@ -38,7 +40,7 @@ function Register() {
       <div className={style.Register}>
         <div className={style["register-container"]}>
           <form className={style["register-form"]} onSubmit={handleRegister}>
-            <h1>Faça sua conta!</h1>
+            <h1>{t("Faça sua conta!", "Create your account!")}</h1>
 
             <input
               type="email"
@@ -50,19 +52,19 @@ function Register() {
             <input
               type="text"
               name="name"
-              placeholder="Nome"
+              placeholder={t("Nome", "Name")}
               value={form.name}
               onChange={handleChange}
             />
             <input
               type="password"
               name="senha"
-              placeholder="Senha"
+              placeholder={t("Senha", "Password")}
               value={form.senha}
               onChange={handleChange}
             />
 
-            <button type="submit">Registrar</button>
+            <button type="submit">{t("Registrar", "Sign up")}</button>
           </form>
         </div>
       </div>

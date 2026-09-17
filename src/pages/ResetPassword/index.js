@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import backgroundImg from '../../img/sobrenatural.jpg';
 import API from '../../services/API';
+import { usePreferences } from '../../preferences';
 
 
 function ResetPassword() {
+    const { t } = usePreferences();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,12 +23,12 @@ function ResetPassword() {
         e.preventDefault();
 
         if (!token) {
-            setError("Token de recuperação não encontrado.");
+            setError(t("Token de recuperação não encontrado.", "Recovery token not found."));
             return;
         }
 
         if (novaSenha !== confirmarSenha) {
-            setError("As senhas não coincidem.");
+            setError(t("As senhas não coincidem.", "Passwords do not match."));
             return;
         }
 
@@ -50,7 +52,7 @@ function ResetPassword() {
 
             setError(
                 error.response?.data?.error ||
-                "Erro ao redefinir a senha."
+                t("Erro ao redefinir a senha.", "Could not reset password.")
             );
         }
     }
@@ -71,19 +73,19 @@ function ResetPassword() {
                         onSubmit={handleResetPassword}
                     >
 
-                        <h1>Crie uma nova senha</h1>
+                        <h1>{t("Crie uma nova senha", "Create a new password")}</h1>
 
                         <input
-                            type="Senha"
-                            placeholder="Nova senha"
+                            type="password"
+                            placeholder={t("Nova senha", "New password")}
                             value={novaSenha}
                             onChange={(e) => setNovaSenha(e.target.value)}
                             required
                         />
 
                         <input
-                            type="Senha"
-                            placeholder="Confirme sua nova senha"
+                            type="password"
+                            placeholder={t("Confirme sua nova senha", "Confirm your new password")}
                             value={confirmarSenha}
                             onChange={(e) => setConfirmarSenha(e.target.value)}
                             required
@@ -96,7 +98,7 @@ function ResetPassword() {
                         )}
 
                         <button type="submit">
-                            Alterar senha
+                            {t("Alterar senha", "Change password")}
                         </button>
 
                     </form>

@@ -12,3 +12,87 @@ html, body {
 body {
   overflow-x: hidden;
 }
+
+/* A preferência de tema é aplicada a todas as rotas pelo PreferencesProvider. */
+body[data-theme="light"] {
+  background: #e9dece;
+  color: #302319;
+}
+body[data-theme="light"] [class*="Home_page__"],
+body[data-theme="light"] [class*="Guns_page__"],
+body[data-theme="light"] [class*="Marks_page__"] {
+  --paper: #302319;
+  --gold: #80552e;
+  color: #302319;
+  background: linear-gradient(90deg, rgba(245,235,219,.95), rgba(232,216,193,.87)), var(--page-background) center / cover fixed;
+}
+body[data-theme="light"] [class*="monsterDetails_page__"],
+body[data-theme="light"] [class*="Gunspage_page__"],
+body[data-theme="light"] [class*="Markspage_page__"] {
+  --paper: #302319;
+  --gold: #80552e;
+  color: #302319;
+  background: #e9dece;
+}
+body[data-theme="light"] [class*="_topbar__"] {
+  background: rgba(239,225,205,.97);
+  border-color: #af9272;
+  color: #302319;
+}
+body[data-theme="light"] [class*="_topbar__"] button,
+body[data-theme="light"] [class*="_topbar__"] input {
+  color: #302319;
+}
+body[data-theme="light"] [class*="_sidebar__"] {
+  background: #e3d2bb;
+  color: #302319;
+}
+body[data-theme="light"] [class*="_dossier__"] {
+  background: #e9dece;
+  color: #302319;
+}
+body[data-theme="light"] [class*="_heroShade__"] {
+  background: linear-gradient(90deg, #e9dece 7%, rgba(233,222,206,.93) 40%, rgba(233,222,206,.5) 80%),
+    linear-gradient(0deg, #e9dece 3%, transparent 45%);
+}
+body[data-theme="light"] [class*="_dossier__"] [class*="_leadText__"],
+body[data-theme="light"] [class*="_dossier__"] [class*="_attribute__"] p,
+body[data-theme="light"] [class*="_dossier__"] [class*="_note__"] p,
+body[data-theme="light"] [class*="_intro__"] {
+  color: #443226;
+}
+body[data-theme="light"] [class*="_dossier__"] [class*="_note__"],
+body[data-theme="light"] [class*="_pagination__"] {
+  background: rgba(250,243,233,.83);
+}
+body[data-theme="light"] [class*="_pagination__"] button,
+body[data-theme="light"] [class*="_status__"] {
+  color: #3b2b1e;
+}
+body[data-theme="light"] [class*="_status__"] {
+  background: #e9dece;
+}
+body[data-theme="light"] [class*="_eyebrow__"],
+body[data-theme="light"] [class*="_sidebarTitle__"],
+body[data-theme="light"] [class*="_breadcrumb__"] {
+  color: #70553b;
+}
+body[data-theme="light"] [class*="Login_background__"],
+body[data-theme="light"] [class*="Register_background__"],
+body[data-theme="light"] [class*="Forgotpass_background__"],
+body[data-theme="light"] [class*="Verifycode_background__"] {
+  background-color: #e9dece;
+  background-blend-mode: screen;
+}
+body[data-theme="light"] [class*="login-form__"],
+body[data-theme="light"] [class*="register-form__"] {
+  background: rgba(246,237,222,.94);
+  color: #302319;
+  border: 1px solid #ad8964;
+}
+body[data-theme="light"] [class*="login-form__"] h1,
+body[data-theme="light"] [class*="register-form__"] h1,
+body[data-theme="light"] [class*="login-form__"] button,
+body[data-theme="light"] [class*="register-form__"] button {
+  color: #302319;
+}
