@@ -53,7 +53,7 @@ function MarksDetails() {
           <div className={styles.markList}>
             {marks.map((item) => {
               const display = localizeRecord(item, language, 'mark');
-              return <button key={item.name} className={styles.markThumb + ' ' + (item.name === mark.name ? styles.active : '')} type="button" onClick={() => navigate('/marks/' + encodeURIComponent(item.name))}>
+              return <button key={item.name} className={styles.markThumb + ' ' + (item.name === mark.name ? styles.active : '')} type="button" aria-current={item.name === mark.name ? 'page' : undefined} onClick={() => navigate('/marks/' + encodeURIComponent(item.name))}>
                 <span className={styles.thumbPlaceholder} aria-hidden="true">✵</span>
                 {item.image && <img src={item.image} alt="" onError={(event) => { event.currentTarget.hidden = true; }} />}
                 <span className={styles.thumbName}>{display.displayName || item.name}</span>

@@ -27,3 +27,14 @@
 .markCard img[hidden] { display: none; }
 .cardContent h2 { overflow-wrap: anywhere; font-size: clamp(26px, 2.6vw, 43px); }
 
+@media (max-width: 560px) {
+  .topbar { grid-template-columns: 40px minmax(0, 1fr) 44px; column-gap: 8px; }
+  .brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: clamp(19px, 6vw, 25px); }
+  .profileButton { min-width: 44px; min-height: 44px; padding: 8px; }
+  .searchBox, .searchBox input { min-width: 0; }
+  .content h1 { font-size: clamp(34px, 10vw, 48px); overflow-wrap: anywhere; }
+  .cardContent h2 { font-size: clamp(25px, 7vw, 34px); line-height: 1.12; }
+  .cardContent p { max-width: none; }
+  .cardFooter i { flex: 0 0 43px; }
+}
+

@@ -14,20 +14,27 @@ function Register() {
     name: "",
     senha: "",
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setErrorMessage('');
   }
 
   async function handleRegister(e) {
     e.preventDefault();
+    setErrorMessage('');
 
     try {
       const response = await API.post("/register", form);
       alert(language === 'en' ? 'Account created successfully.' : response.data.message);
-      navigate("/Home");
+      navigate('/login');
     } catch (error) {
-      alert(t("Erro ao registrar usuário", "Could not register user"));
+      setErrorMessage(error.response?.data?.error
+        ? (language === 'en' && error.response.status === 400
+          ? 'Check the fields: the password must have at least 6 characters and the email must be unused.'
+          : error.response.data.error)
+        : t('Não foi possível conectar à API. Tente novamente.', 'Could not connect to the API. Please try again.'));
       console.error(error);
     }
   }
@@ -48,6 +55,7 @@ function Register() {
               placeholder="Email@"
               value={form.email}
               onChange={handleChange}
+              required
             />
             <input
               type="text"
@@ -55,6 +63,7 @@ function Register() {
               placeholder={t("Nome", "Name")}
               value={form.name}
               onChange={handleChange}
+              required
             />
             <input
               type="password"
@@ -62,8 +71,11 @@ function Register() {
               placeholder={t("Senha", "Password")}
               value={form.senha}
               onChange={handleChange}
+              minLength={6}
+              required
             />
 
+            {errorMessage && <p role="alert" style={{ color: '#f29b8f' }}>{errorMessage}</p>}
             <button type="submit">{t("Registrar", "Sign up")}</button>
           </form>
         </div>

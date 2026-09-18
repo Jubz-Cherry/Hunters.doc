@@ -28,9 +28,11 @@ function Login() {
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       alert(language === 'en' ? 'Logged in successfully.' : response.data.message);
-      navigate("/Home");
+      navigate("/home");
     } catch (error) {
-      setError(t("Erro ao entrar.", "Could not log in."));
+      setError(error.response?.data?.error
+        ? (language === 'en' && error.response.status === 401 ? 'Invalid email or password.' : error.response.data.error)
+        : t('Não foi possível conectar à API. Tente novamente.', 'Could not connect to the API. Please try again.'));
       console.error(error);
     }
 
@@ -38,7 +40,7 @@ function Login() {
 
   const goToRegister = (e) => {
     e.preventDefault();
-    navigate('/Register');
+    navigate('/register');
   };
 
   return (

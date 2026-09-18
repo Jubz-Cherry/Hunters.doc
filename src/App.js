@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -17,6 +17,7 @@ function App() {
   return (
     <PreferencesProvider><Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/ResetPassword" element={<ResetPassword />} />
 
@@ -27,6 +28,7 @@ function App() {
       <Route path="/guns/:name" element={<PrivateRoute><GunsDetails /></PrivateRoute>}/>
       <Route path="/marks" element={<PrivateRoute><Marks /></PrivateRoute>}/>
       <Route path="/marks/:name" element={<PrivateRoute><MarksDetails /></PrivateRoute>}/>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes></PreferencesProvider>
   );
 }

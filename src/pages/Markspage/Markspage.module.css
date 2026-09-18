@@ -47,3 +47,18 @@
 .heroPlaceholder { position: absolute; color: #805e3c; font: clamp(180px, 30vw, 440px) Georgia, serif; }
 .mainContent h1 { overflow-wrap: anywhere; }
 .attribute p { overflow-wrap: anywhere; }
+
+@media (max-width: 600px) {
+  .topbar { gap: 8px; padding: 0 12px; }
+  .brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: clamp(19px, 6vw, 25px); }
+  .profileButton { min-width: 44px; min-height: 44px; padding: 8px; }
+  .markList { display: flex; gap: 8px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x proximity; padding-bottom: 8px; }
+  .markThumb { flex: 0 0 min(44vw, 160px); min-width: 0; min-height: 88px; scroll-snap-align: start; }
+  .markThumb .thumbName { padding: 10px; font-size: 14px; line-height: 1.15; overflow-wrap: anywhere; }
+  .mainContent h1 { font-size: clamp(30px, 9vw, 48px); line-height: 1.06; }
+  .breadcrumb { overflow-wrap: anywhere; }
+  .attributeGrid { grid-template-columns: 1fr; }
+  .attribute, .attribute:nth-child(2), .attribute:nth-child(-n+2) { padding: 14px 0; text-align: left; border-right: 0; border-bottom: 1px solid rgba(190, 135, 72, .22); }
+  .attribute:last-child { border-bottom: 0; }
+  .attribute p { font-size: 15px; line-height: 1.45; }
+}
