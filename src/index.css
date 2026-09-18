@@ -97,27 +97,11 @@ body[data-theme="light"] [class*="register-form__"] button {
   color: #302319;
 }
 
-/* Catalog cards and dossier controls need their own light surfaces and text colors. */
+/* Keep catalog cards readable over their images in both themes. */
 body[data-theme="light"] :is([class*="Home_page__"], [class*="Guns_page__"], [class*="Marks_page__"]) :is([class*="_monsterCard__"], [class*="_gunCard__"], [class*="_markCard__"]) {
-  background: #e4d2b8;
-  color: #291c13;
-  border-color: #a68059;
-}
-body[data-theme="light"] :is([class*="Home_page__"], [class*="Guns_page__"], [class*="Marks_page__"]) [class*="_cardShade__"] {
-  background: linear-gradient(90deg, rgba(250, 241, 226, .95), rgba(246, 232, 211, .72) 70%),
-    linear-gradient(0deg, rgba(245, 231, 210, .85), transparent 54%);
-}
-body[data-theme="light"] :is([class*="Home_page__"], [class*="Guns_page__"], [class*="Marks_page__"]) [class*="_cardPlaceholder__"] {
-  background: radial-gradient(circle, #d2b999, #eadbc5 70%);
-  color: #aa855d;
-}
-body[data-theme="light"] :is([class*="Home_page__"], [class*="Guns_page__"], [class*="Marks_page__"]) [class*="_cardContent__"] :is(h2, p) {
-  color: #332419;
-  text-shadow: none;
-}
-body[data-theme="light"] :is([class*="Home_page__"], [class*="Guns_page__"], [class*="Marks_page__"]) [class*="_cardFooter__"] {
-  color: #77502e;
-  border-color: #aa855d;
+  --paper: #e5dbcf;
+  --gold: #bf8a48;
+  color: var(--paper);
 }
 body[data-theme="light"] :is([class*="Home_page__"], [class*="Guns_page__"], [class*="Marks_page__"]) [class*="_searchBox__"] input::placeholder {
   color: #715b47;
